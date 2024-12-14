@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("plugin.serialization") version "2.0.21"
+    kotlin("kapt") version "2.1.0"
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -49,7 +51,22 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation)
 
+    // retrofit
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.retrofit.converter.moshi)
+    implementation(libs.squareup.moshi)
+    implementation(libs.squareup.moshi.adapters)
+    implementation(libs.squareup.okhttp3.logging)
+
+    // hilt
+    implementation(libs.google.dagger)
+    kapt(libs.google.dagger.compiler)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }
