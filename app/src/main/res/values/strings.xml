@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">Emotion Calendar</string>
 
-    <string name="events_label">Events</string>
-    <string name="profile_label">Profile</string>
+    <string name="events_label">Задания</string>
+    <string name="profile_label">Профиль</string>
+
+    // events
+    <string name="complete_any_task">Выполни любое задание</string>
+    <string name="customize_tasks">Настроить под себя</string>
+    <string name="few_minutes">Пару минут</string>
+    <string name="until_hour">До часа</string>
+    <string name="more_hour">Больше часа</string>
+    <string name="one_day_long">Один день</string>
+    <string name="quest_of_the_day">Квест дня</string>
+    <string name="task_completed">Задание выполнено</string>
+    <string name="not_like_task">Задание не нравится</string>
+    <string name="show_task_later">Покажите задание позже</string>
+    <string name="event_money">до %s BYN</string>
 </resources>

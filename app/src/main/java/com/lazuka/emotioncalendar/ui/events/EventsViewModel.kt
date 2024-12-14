@@ -3,6 +3,8 @@ package com.lazuka.emotioncalendar.ui.events
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lazuka.emotioncalendar.domain.repository.EventsRepository
+import com.lazuka.emotioncalendar.ui.events.mapper.EventUiMapper
+import com.lazuka.emotioncalendar.ui.events.model.EventUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.channels.Channel
@@ -17,11 +19,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventsViewModel @Inject constructor(
-    private val eventsRepository: EventsRepository
+    private val eventsRepository: EventsRepository,
+    private val eventUiMapper: EventUiMapper
 ) : ViewModel() {
 
-    private val _eventsFlow = MutableSharedFlow<String>()
-    val eventsFlow: SharedFlow<String> = _eventsFlow
+    private val _eventsFlow = MutableSharedFlow<List<EventUi>>()
+    val eventsFlow: SharedFlow<List<EventUi>> = _eventsFlow
 
     private val errorChannel = Channel<Unit>()
     val errorFlow: Flow<Unit> = errorChannel.receiveAsFlow()
@@ -40,8 +43,11 @@ class EventsViewModel @Inject constructor(
     private fun getEvents() {
         viewModelScope.launch(handler) {
             _isLoading.emit(true)
-            val list = eventsRepository.getEvents(1)
-            _eventsFlow.emit(list.joinToString())
+            val list = eventsRepository.getEvents()
+                .map(eventUiMapper::invoke)
+                .sortedBy { event -> event.completed }
+
+            _eventsFlow.emit(list)
             _isLoading.emit(false)
         }
     }

@@ -16,5 +16,8 @@ data class EventResponse(
     val cost: Double? = null,
 
     @Json(name = "questDay")
-    val questDay: Boolean? = null
+    val questDay: Boolean? = null,
+
+    @Json(name = "done")
+    val hasDone: Boolean? = null
 )
