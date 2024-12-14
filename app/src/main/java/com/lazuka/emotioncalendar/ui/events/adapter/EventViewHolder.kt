@@ -6,13 +6,12 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.lazuka.emotioncalendar.R
 import com.lazuka.emotioncalendar.databinding.ItemEventBinding
+import com.lazuka.emotioncalendar.ui.events.model.ActionType
 import com.lazuka.emotioncalendar.ui.events.model.EventUi
 
 class EventViewHolder(
     private val binding: ItemEventBinding,
-    private val onDoneAction: (Long) -> Unit,
-    private val onNotLikeAction: (Long) -> Unit,
-    private val onLaterAction: (Long) -> Unit
+    private val onAction: (Long, ActionType) -> Unit
 ) : ViewHolder(binding.root) {
 
     fun onBind(model: EventUi) = with(binding) {
@@ -40,15 +39,15 @@ class EventViewHolder(
             }
 
             ivComplete.setOnClickListener {
-                onDoneAction(model.id)
+                onAction(model.id, ActionType.DONE)
             }
 
             ivNotLike.setOnClickListener {
-                onNotLikeAction(model.id)
+                onAction(model.id, ActionType.UNLIKE)
             }
 
             ivLater.setOnClickListener {
-                onLaterAction(model.id)
+                onAction(model.id, ActionType.LATER)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.lazuka.emotioncalendar.di.modules
 
 import com.lazuka.emotioncalendar.data.api.EventsApi
+import com.lazuka.emotioncalendar.data.api.ProfileApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -47,5 +48,11 @@ class NetworkModule {
     @Provides
     fun provideEventsApi(retrofit: Retrofit): EventsApi {
         return retrofit.create(EventsApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileApi(retrofit: Retrofit): ProfileApi {
+        return retrofit.create(ProfileApi::class.java)
     }
 }

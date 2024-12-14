@@ -4,5 +4,7 @@ import com.lazuka.emotioncalendar.domain.model.EventModel
 
 interface EventsRepository {
 
-    suspend fun getEvents(userId: Long? = null): List<EventModel>
+    suspend fun getEvents(): List<EventModel>
+
+    suspend fun setEventStatus(eventId: Long, actionKey: String): List<EventModel>
 }
