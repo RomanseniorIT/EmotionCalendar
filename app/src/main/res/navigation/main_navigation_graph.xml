@@ -5,6 +5,16 @@
     android:id="@+id/main_navigation_graph"
     app:startDestination="@id/eventsFragment">
 
+    <action
+        android:id="@+id/actionToMain"
+        app:destination="@id/eventsFragment"
+        app:popUpTo="@id/eventsFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/actionProfile"
+        app:destination="@id/profileFragment" />
+
     <fragment
         android:id="@+id/eventsFragment"
         android:name="com.lazuka.emotioncalendar.ui.events.EventsFragment"

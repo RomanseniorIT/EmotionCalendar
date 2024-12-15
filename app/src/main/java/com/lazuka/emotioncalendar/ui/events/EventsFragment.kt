@@ -36,7 +36,7 @@ class EventsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initRecycler()
+        initViews()
         observeViewModel()
     }
 
@@ -45,22 +45,30 @@ class EventsFragment : Fragment() {
         _binding = null
     }
 
-    private fun initRecycler() = with(binding.rvEvents) {
-        adapter = this@EventsFragment.adapter
-        addItemDecoration(EventItemDecoration())
+    private fun initViews() = with(binding) {
+        btnCustomize.isVisible = !viewModel.hasFilled()
+        btnCustomize.setOnClickListener {
+            viewModel.customizeEvents()
+        }
+
+        rvEvents.adapter = adapter
+        rvEvents.addItemDecoration(EventItemDecoration())
     }
 
     private fun observeViewModel() = with(viewModel) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                eventsFlow.collectLatest(adapter::submitList)
+                eventsFlow.collectLatest { list ->
+                    binding.groupEmpty.isVisible = list.isEmpty()
+                    adapter.submitList(list)
+                }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 navigateToProfileFlow.collectLatest {
-                    findNavController().navigate(R.id.profileFragment)
+                    findNavController().navigate(R.id.actionProfile)
                 }
             }
         }

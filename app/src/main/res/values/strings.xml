@@ -3,6 +3,7 @@
 
     <string name="events_label">Задания</string>
     <string name="profile_label">Профиль</string>
+    <string name="navigate_back">Вернуться назад</string>
 
     // events
     <string name="complete_any_task">Выполни любое задание</string>
@@ -17,4 +18,27 @@
     <string name="show_task_later">Покажите задание позже</string>
     <string name="event_money">до %s BYN</string>
     <string name="error">Произошла ошибка. Попробуйте еще раз</string>
+    <string name="empty_events_text">Задания на сегодня закончились. Возвращайтесь завтра</string>
+
+    // profile
+    <string name="profile">Профиль</string>
+    <string name="your_id">Ваш ID</string>
+    <string name="is_adult">Вам есть 18 лет?</string>
+    <string name="personality_type">Тип личности</string>
+    <string name="introvert">Интроверт</string>
+    <string name="extravert">Экстраверт</string>
+    <string name="sex">Пол</string>
+    <string name="male">Мужчина</string>
+    <string name="female">Женщина</string>
+    <string name="logout">Выйти</string>
+    <string name="enter_id">Введите свой ID</string>
+    <string name="or_register">либо зарегистрируйтесь</string>
+    <string name="id_hint">132</string>
+    <string name="login">Войти</string>
+    <string name="save">Сохранить</string>
+    <string name="register_success">Вы зарегистрированы</string>
+    <string name="fill_success">Данные заполнены. Спасибо!</string>
+    <string name="input_error">Ошибка ввода: id должен состоять только из чисел</string>
+    <string name="personality_input_error">Заполните, пожалуйста, тип личности</string>
+    <string name="sex_input_error">Заполните, пожалуйста, пол</string>
 </resources>

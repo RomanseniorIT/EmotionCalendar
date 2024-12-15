@@ -41,6 +41,7 @@ class EventsViewModel @Inject constructor(
 
     private val handler = CoroutineExceptionHandler { _, _ ->
         errorChannel.trySend(Unit)
+        _isLoading.tryEmit(false)
     }
 
     init {
@@ -67,13 +68,28 @@ class EventsViewModel @Inject constructor(
         }
     }
 
-    private fun List<EventModel>.mapEvents(): List<EventUi> = map(eventUiMapper::invoke).sortedBy(EventUi::completed)
+    private fun isAuthorized(): Boolean = profileRepository.isAuthorized()
+
+    private fun List<EventModel>.mapEvents(): List<EventUi> = map(eventUiMapper::invoke)
+
+    fun hasFilled(): Boolean = profileRepository.getUserHasFilled()
 
     fun onEventAction(eventId: Long, action: ActionType) {
-        if (profileRepository.isAuthorized()) {
+        if (isAuthorized()) {
             setEventStatus(eventId, action)
         } else {
             navigateToProfileChannel.trySend(Unit)
+        }
+    }
+
+    fun customizeEvents() {
+        viewModelScope.launch(handler) {
+            _isLoading.emit(true)
+
+            if (!isAuthorized()) profileRepository.registerUser()
+
+            navigateToProfileChannel.send(Unit)
+            _isLoading.emit(false)
         }
     }
 }

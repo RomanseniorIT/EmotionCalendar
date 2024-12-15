@@ -19,6 +19,7 @@
             android:text="@string/complete_any_task"
             android:textColor="@color/purpleColor"
             android:textSize="28sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/purpleColor"
+            android:paddingVertical="12dp"
             android:text="@string/customize_tasks"
             android:textAllCaps="false"
             app:cornerRadius="32dp"
@@ -43,6 +45,38 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnCustomize" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="ivEmpty, tvEmpty" />
+
+        <ImageView
+            android:id="@+id/ivEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/empty_events_text"
+            android:src="@drawable/ic_empty_events"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="64dp"
+            android:gravity="center"
+            android:src="@drawable/ic_empty_events"
+            android:text="@string/empty_events_text"
+            android:textColor="@color/purpleColor"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivEmpty"
+            app:layout_constraintEnd_toEndOf="@id/ivEmpty"
+            app:layout_constraintStart_toStartOf="@id/ivEmpty" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
