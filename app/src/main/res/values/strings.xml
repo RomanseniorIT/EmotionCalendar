@@ -16,4 +16,5 @@
     <string name="not_like_task">Задание не нравится</string>
     <string name="show_task_later">Покажите задание позже</string>
     <string name="event_money">до %s BYN</string>
+    <string name="error">Произошла ошибка. Попробуйте еще раз</string>
 </resources>

@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.lazuka.emotioncalendar.databinding.ItemEventBinding
+import com.lazuka.emotioncalendar.ui.events.model.ActionType
 import com.lazuka.emotioncalendar.ui.events.model.EventUi
 
 class EventsAdapter(
-    private val onDoneAction: (Long) -> Unit,
-    private val onNotLikeAction: (Long) -> Unit,
-    private val onLaterAction: (Long) -> Unit,
+    private val onAction: (Long, ActionType) -> Unit
 ) : ListAdapter<EventUi, EventViewHolder>(DIFF_UTIL_CALLBACK) {
 
     companion object {
@@ -27,7 +26,7 @@ class EventsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val binding = ItemEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return EventViewHolder(binding, onDoneAction, onNotLikeAction, onLaterAction)
+        return EventViewHolder(binding, onAction)
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {

@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.lazuka.emotioncalendar.R
 import com.lazuka.emotioncalendar.databinding.FragmentEventsBinding
 import com.lazuka.emotioncalendar.ui.events.adapter.EventItemDecoration
 import com.lazuka.emotioncalendar.ui.events.adapter.EventsAdapter
@@ -26,7 +28,7 @@ class EventsFragment : Fragment() {
 
     private val viewModel: EventsViewModel by viewModels()
 
-    private val adapter = EventsAdapter({}, {}, {})
+    private val adapter by lazy { EventsAdapter(viewModel::onEventAction) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
@@ -34,8 +36,7 @@ class EventsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.rvEvents.adapter = adapter
-        binding.rvEvents.addItemDecoration(EventItemDecoration())
+        initRecycler()
         observeViewModel()
     }
 
@@ -44,10 +45,23 @@ class EventsFragment : Fragment() {
         _binding = null
     }
 
+    private fun initRecycler() = with(binding.rvEvents) {
+        adapter = this@EventsFragment.adapter
+        addItemDecoration(EventItemDecoration())
+    }
+
     private fun observeViewModel() = with(viewModel) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 eventsFlow.collectLatest(adapter::submitList)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                navigateToProfileFlow.collectLatest {
+                    findNavController().navigate(R.id.profileFragment)
+                }
             }
         }
 
@@ -65,6 +79,6 @@ class EventsFragment : Fragment() {
     }
 
     private fun showError() {
-        Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_LONG).show()
     }
 }
