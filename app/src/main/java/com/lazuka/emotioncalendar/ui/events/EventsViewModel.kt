@@ -67,7 +67,7 @@ class EventsViewModel @Inject constructor(
             when (action) {
                 ActionType.LATER -> msgChannel.send(R.string.later_text to false)
                 ActionType.UNLIKE -> msgChannel.send(R.string.not_like_text to false)
-                else -> Unit
+                ActionType.DONE -> msgChannel.send(R.string.done_text to false)
             }
 
             _eventsFlow.emit(list)

@@ -21,6 +21,7 @@
     <string name="empty_events_text">Задания на сегодня закончились. Возвращайтесь завтра</string>
     <string name="later_text">Заданиe будет показано позже</string>
     <string name="not_like_text">Удалили задание из Ваших рекомендаций</string>
+    <string name="done_text">Продолжайте в том же духе!</string>
 
     // profile
     <string name="profile">Профиль</string>
