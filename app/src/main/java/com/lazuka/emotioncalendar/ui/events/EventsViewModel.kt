@@ -31,8 +31,8 @@ class EventsViewModel @Inject constructor(
     private val _eventsFlow = MutableSharedFlow<List<EventUi>>(replay = 1)
     val eventsFlow: SharedFlow<List<EventUi>> = _eventsFlow
 
-    private val msgChannel = Channel<Int>()
-    val msgFlow: Flow<Int> = msgChannel.receiveAsFlow()
+    private val msgChannel = Channel<Pair<Int, Boolean>>()
+    val msgFlow: Flow<Pair<Int, Boolean>> = msgChannel.receiveAsFlow()
 
     private val navigateToProfileChannel = Channel<Unit>()
     val navigateToProfileFlow: Flow<Unit> = navigateToProfileChannel.receiveAsFlow()
@@ -41,7 +41,7 @@ class EventsViewModel @Inject constructor(
     val isLoading: StateFlow<Boolean> = _isLoading
 
     private val handler = CoroutineExceptionHandler { _, _ ->
-        msgChannel.trySend(R.string.error)
+        msgChannel.trySend(R.string.error to true)
         _isLoading.tryEmit(false)
     }
 
@@ -65,8 +65,8 @@ class EventsViewModel @Inject constructor(
             val list = eventsRepository.setEventStatus(eventId, action.name).mapEvents()
 
             when (action) {
-                ActionType.LATER -> msgChannel.send(R.string.later_text)
-                ActionType.UNLIKE -> msgChannel.send(R.string.not_like_text)
+                ActionType.LATER -> msgChannel.send(R.string.later_text to false)
+                ActionType.UNLIKE -> msgChannel.send(R.string.not_like_text to false)
                 else -> Unit
             }
 
