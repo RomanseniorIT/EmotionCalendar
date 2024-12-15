@@ -19,7 +19,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private val BASE_URL = "https://emotion-calendar-api.vercel.app/"
+        private val BASE_URL = "https://emotion-calendar-api-4a520068-d25a-4ef9-9662-a666d256d578.vercel.app/"
     }
 
     @Provides

@@ -16,7 +16,7 @@ class EventItemDecoration : ItemDecoration() {
         val adapterPosition = parent.getChildAdapterPosition(view)
         val position = if (adapterPosition != NO_POSITION) adapterPosition else parent.getChildLayoutPosition(view)
         val list = (parent.adapter as EventsAdapter).currentList
-        val item = list[position]
+        val item = list.getOrNull(position) ?: return
         val firstCompletedPos = list.indexOfFirst { it.completed }
         val bigSpace = parent.context.resources.getDimensionPixelSize(R.dimen.dp_32)
         val space = parent.context.resources.getDimensionPixelSize(R.dimen.dp_12)
