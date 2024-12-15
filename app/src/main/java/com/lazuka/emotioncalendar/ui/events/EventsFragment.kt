@@ -93,6 +93,6 @@ class EventsFragment : Fragment() {
             binding.groupEmpty.isVisible = true
         }
 
-        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_SHORT).show()
     }
 }

@@ -15,14 +15,15 @@
             android:id="@+id/groupProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:constraint_referenced_ids="divider1, divider2, divider3, tvUserIdTitle, tvUserId, switchAdult, tvPersonalityTitle, rgPersonality, tvSexTitle, rgSex, tvLogout" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupAuth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="tvEnterIdTitle, etEnterId, tvReg, btnLogin" />
+            android:visibility="visible"
+            app:constraint_referenced_ids="tvEnterIdTitle, etEnterId, tvReg, btnLogin, tvOr" />
 
         <ImageView
             android:id="@+id/ivBack"
@@ -285,15 +286,33 @@
             app:layout_constraintTop_toBottomOf="@id/tvEnterIdTitle" />
 
         <TextView
-            android:id="@+id/tvReg"
-            android:layout_width="match_parent"
+            android:id="@+id/tvOr"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:gravity="center"
-            android:text="@string/or_register"
-            android:textColor="@color/gray50"
+            android:text="@string/or_text"
+            android:textColor="@color/black30"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tvReg"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEnterId" />
+
+        <TextView
+            android:id="@+id/tvReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="@string/register_text"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvOr"
             app:layout_constraintTop_toBottomOf="@id/etEnterId" />
 
         <com.google.android.material.button.MaterialButton

@@ -71,6 +71,9 @@ class EventsViewModel @Inject constructor(
             }
 
             _eventsFlow.emit(list)
+
+            val hasActions = list.any { event -> !event.completed }
+            if (!hasActions) msgChannel.send(R.string.all_done_text to false)
             _isLoading.emit(false)
         }
     }

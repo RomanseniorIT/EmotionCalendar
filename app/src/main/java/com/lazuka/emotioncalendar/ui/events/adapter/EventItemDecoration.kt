@@ -15,6 +15,8 @@ class EventItemDecoration : ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         val adapterPosition = parent.getChildAdapterPosition(view)
         val position = if (adapterPosition != NO_POSITION) adapterPosition else parent.getChildLayoutPosition(view)
+        if (position == 0) return
+
         val list = (parent.adapter as EventsAdapter).currentList
         val item = list.getOrNull(position) ?: return
         val firstCompletedPos = list.indexOfFirst { it.completed }
@@ -23,7 +25,7 @@ class EventItemDecoration : ItemDecoration() {
 
         when {
             item.completed && firstCompletedPos == position -> outRect.top = bigSpace
-            position != 0 -> outRect.top = space
+            else -> outRect.top = space
         }
     }
 }
