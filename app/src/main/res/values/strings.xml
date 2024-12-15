@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Emotion Calendar</string>
+    <string name="app_name">Календарь эмоций</string>
 
     <string name="events_label">Задания</string>
     <string name="profile_label">Профиль</string>
@@ -19,6 +19,8 @@
     <string name="event_money">до %s BYN</string>
     <string name="error">Произошла ошибка. Попробуйте еще раз</string>
     <string name="empty_events_text">Задания на сегодня закончились. Возвращайтесь завтра</string>
+    <string name="later_text">Заданиe будет показано позже</string>
+    <string name="not_like_text">Удалили задание из Ваших рекомендаций</string>
 
     // profile
     <string name="profile">Профиль</string>
