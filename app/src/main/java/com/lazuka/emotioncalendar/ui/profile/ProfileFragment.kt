@@ -157,7 +157,7 @@ class ProfileFragment : Fragment() {
             rgPersonality.setOnCheckedChangeListener { _, checkedId ->
                 val personality = when(checkedId) {
                     rbExtravert.id -> Personality.EXTROVERT
-                    rbExtravert.id -> Personality.INTROVERT
+                    rbIntrovert.id -> Personality.INTROVERT
                     else -> Personality.NOT_FILLED
                 }
                 viewModel.onPersonalityChanged(personality)
