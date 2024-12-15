@@ -2,6 +2,7 @@ package com.lazuka.emotioncalendar.ui.events
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lazuka.emotioncalendar.R
 import com.lazuka.emotioncalendar.domain.model.EventModel
 import com.lazuka.emotioncalendar.domain.repository.EventsRepository
 import com.lazuka.emotioncalendar.domain.repository.ProfileRepository
@@ -30,8 +31,8 @@ class EventsViewModel @Inject constructor(
     private val _eventsFlow = MutableSharedFlow<List<EventUi>>(replay = 1)
     val eventsFlow: SharedFlow<List<EventUi>> = _eventsFlow
 
-    private val errorChannel = Channel<Unit>()
-    val errorFlow: Flow<Unit> = errorChannel.receiveAsFlow()
+    private val msgChannel = Channel<Int>()
+    val msgFlow: Flow<Int> = msgChannel.receiveAsFlow()
 
     private val navigateToProfileChannel = Channel<Unit>()
     val navigateToProfileFlow: Flow<Unit> = navigateToProfileChannel.receiveAsFlow()
@@ -40,7 +41,7 @@ class EventsViewModel @Inject constructor(
     val isLoading: StateFlow<Boolean> = _isLoading
 
     private val handler = CoroutineExceptionHandler { _, _ ->
-        errorChannel.trySend(Unit)
+        msgChannel.trySend(R.string.error)
         _isLoading.tryEmit(false)
     }
 
@@ -62,6 +63,12 @@ class EventsViewModel @Inject constructor(
         viewModelScope.launch(handler) {
             _isLoading.emit(true)
             val list = eventsRepository.setEventStatus(eventId, action.name).mapEvents()
+
+            when (action) {
+                ActionType.LATER -> msgChannel.send(R.string.later_text)
+                ActionType.UNLIKE -> msgChannel.send(R.string.not_like_text)
+                else -> Unit
+            }
 
             _eventsFlow.emit(list)
             _isLoading.emit(false)

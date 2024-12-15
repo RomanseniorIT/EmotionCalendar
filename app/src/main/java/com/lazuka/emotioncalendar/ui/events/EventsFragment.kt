@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -75,7 +76,7 @@ class EventsFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                errorFlow.collectLatest { showError() }
+                msgFlow.collectLatest(::showMessage)
             }
         }
 
@@ -86,7 +87,7 @@ class EventsFragment : Fragment() {
         }
     }
 
-    private fun showError() {
-        Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_LONG).show()
+    private fun showMessage(@StringRes messageRes: Int) {
+        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_LONG).show()
     }
 }

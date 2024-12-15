@@ -29,6 +29,7 @@
             android:layout_width="@dimen/dp_32"
             android:layout_height="@dimen/dp_32"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/navigate_back"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
