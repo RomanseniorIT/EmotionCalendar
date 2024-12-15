@@ -34,10 +34,13 @@ class ProfileViewModel @Inject constructor(
     private val errorChannel = Channel<Int>()
     val errorFlow: Flow<Int> = errorChannel.receiveAsFlow()
 
-    private val _regSuccessFlow = MutableSharedFlow<Long>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private val _regSuccessFlow = MutableSharedFlow<UserModel>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val regSuccessFlow: Flow<Long> = _regSuccessFlow.onEach { _regSuccessFlow.resetReplayCache() }
+    val regSuccessFlow: Flow<UserModel> = _regSuccessFlow.onEach { _regSuccessFlow.resetReplayCache() }
 
     private val fillSuccessChannel = Channel<Unit>()
     val fillSuccessFlow: Flow<Unit> = fillSuccessChannel.receiveAsFlow()

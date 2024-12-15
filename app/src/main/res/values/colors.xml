@@ -8,17 +8,22 @@
     <color name="black">#FF000000</color>
     <color name="black10">#1A000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white70">#B3FFFFFF</color>
     <color name="white40">#66FFFFFF</color>
-    <color name="white30">#4DFFFFFF</color>#19171680
+    <color name="white30">#4DFFFFFF</color>
     <color name="gray50">#80191716</color>
     <color name="purpleColor">#3F3EA3</color>
     <color name="purpleColor50">#803F3EA3</color>
     <color name="purpleColor70">#B33F3EA3</color>
 
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="bottomBackgroundColor">#FFFFFF</color>
     <color name="event_background_color">#A4A3FA</color>
     <color name="completed_event_background_color">#E8E8FF</color>
     <color name="button_color">#8053529F</color>
     <color name="completed_color">#35B17D</color>
     <color name="completed_frame_color">#4DA4A3FA</color>
+    <color name="completed_icon_color">#4DFFFFFF</color>
     <color name="dividerColor">#E6E6FF</color>
+    <color name="backColor">#3F3EA3</color>
 </resources>
