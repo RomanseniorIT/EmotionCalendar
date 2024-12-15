@@ -14,7 +14,7 @@ interface ProfileRepository {
 
     fun getUserId(): Long
 
-    suspend fun registerUser(): Long
+    suspend fun registerUser(): UserModel
 
     suspend fun getUserById(userId: Long): UserModel
 

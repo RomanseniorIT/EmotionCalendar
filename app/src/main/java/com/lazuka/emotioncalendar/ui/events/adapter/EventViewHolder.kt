@@ -24,8 +24,8 @@ class EventViewHolder(
         if (model.completed) {
             layoutContent.setBackgroundResource(R.color.completed_event_background_color)
             ivComplete.setColorFilter(ContextCompat.getColor(root.context, R.color.completed_color))
-            ivNotLike.setColorFilter(ContextCompat.getColor(root.context, R.color.completed_frame_color), PorterDuff.Mode.MULTIPLY)
-            ivLater.setColorFilter(ContextCompat.getColor(root.context, R.color.completed_frame_color), PorterDuff.Mode.MULTIPLY)
+            ivNotLike.setColorFilter(ContextCompat.getColor(root.context, R.color.completed_icon_color), PorterDuff.Mode.MULTIPLY)
+            ivLater.setColorFilter(ContextCompat.getColor(root.context, R.color.completed_icon_color), PorterDuff.Mode.MULTIPLY)
             tvEvent.setTextColor(ContextCompat.getColor(root.context, R.color.purpleColor50))
             tvDayQuest.setTextColor(ContextCompat.getColor(root.context, R.color.purpleColor50))
             tvDayQuest.setBackgroundResource(R.drawable.bg_rounded_frame_complete)

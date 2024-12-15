@@ -35,9 +35,8 @@ class ProfileRepositoryImpl @Inject constructor(
         return requireNotNull(settingsDataSource.getUserId())
     }
 
-    override suspend fun registerUser(): Long = withContext(Dispatchers.IO) {
-        val user = profileDataSource.registerUser().let(userModelMapper::invoke).also(::saveUserData)
-        user.userId
+    override suspend fun registerUser(): UserModel = withContext(Dispatchers.IO) {
+        profileDataSource.registerUser().let(userModelMapper::invoke).also(::saveUserData)
     }
 
     override suspend fun getUserById(userId: Long): UserModel {

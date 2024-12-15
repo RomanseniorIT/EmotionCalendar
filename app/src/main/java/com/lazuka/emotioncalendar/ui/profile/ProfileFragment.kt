@@ -93,9 +93,8 @@ class ProfileFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                regSuccessFlow.collectLatest { id ->
-                    binding.tvUserId.text = id.toString()
-                    binding.btnSave.isVisible = true
+                regSuccessFlow.collectLatest { user ->
+                    showProfile(user)
                     showRegisterSuccess()
                 }
             }
